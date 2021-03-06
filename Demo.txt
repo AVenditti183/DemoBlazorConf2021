@@ -1,0 +1,55 @@
+dotnet new blazorwasm —hosted
+dotnet new xunit -o Test
+dotnet sln add Test/test.csproj
+
+cd test
+
+--aggiungere i pacchetti nuget
+dotnet add package bunit.web --version 1.0.0-preview-01
+dotnet add package bunit.xunit --version 1.0.0-preview-01
+
+--aggiungere al  progetto di test la referenza al progetto client
+dotnet add reference ../client/BlazorConf2021.Client.csproj
+
+creo la classe CounterTest
+
+primo test del counter con un click sul button
+
+secondo test theory con inline numero di click
+
+terzo test diff sul click
+
+quarto test diff theory con inline numero di click
+
+refactoring client
+
+creare cartella service e WeatherForecastService
+registrare la dipendenza 
+modificare page FetchData con il service appena creato
+
+provare se tutto funziona
+
+importo Moq come pacchetto dei test
+creo la classe FetchDataTest
+
+test senza dati mockando il service a return null
+test con un paio di dati mockando il service
+
+aggiungo un editform al component FetchData
+
+Test sul click Edit verificare che si apre il form
+test go back dopo edit torna alla lista
+Test validazione data
+
+aggiungere Util.js -> alert
+in FetchData.razor inject IJSRuntime e sul click go back invoke alert con messaggio "modifica effettuata"
+
+il test go back va in errore, modificare il test con JSinterrupt
+importare 
+using Bunit.JSInterop;
+configurare il mock
+ctx.JSInterop.SetupVoid("alert", "modifica effettuata").SetVoidResult();
+verifica call
+ctx.JSInterop.VerifyInvoke("alert", "modifica effettuata");
+
+modificare index.razor con un pulsante per far apparire Hello World! dopo il click ma con un delay

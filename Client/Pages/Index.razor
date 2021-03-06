@@ -1,0 +1,17 @@
+﻿@page "/"
+
+<h1>@message</h1>
+
+Welcome to your new app.
+
+<button @onclick="showMessage">ShowMessage</button>
+
+@code{
+    private string message;
+
+    public async Task showMessage()
+    {
+        await Task.Delay(200);
+        message = "Hello, world!";
+    }
+}
