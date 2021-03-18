@@ -19,7 +19,6 @@ namespace Test
         [Fact]
         public void DataIsnull()
         {
-            // Arrange
             var service = new Mock<IWeatherForecastService>();
             using var ctx = new TestContext();
 
@@ -27,7 +26,6 @@ namespace Test
 
             service.Setup(o => o.Get())
                 .ReturnsAsync(() => null);
-            // Act
             var component = ctx.RenderComponent<FetchData>();
 
             component.MarkupMatches(@"<h1>Weather forecast</h1>
